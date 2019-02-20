@@ -12,15 +12,10 @@ public class LoginPage extends AbstractPage {
 
     String loginPageURL;
 
-    // Web Elements
-    @FindBy(xpath = "//form[@id='login_form']/descendant::div[@class='form-group']/input[@data-validate='isEmail']")
-    private WebElement fieldLogin;
 
-    @FindBy(xpath = "//form[@id='login_form']/descendant::div[@class='form-group']/span/input[@type='password']")
-    private WebElement fieldPassword;
 
-    @FindBy(xpath = "//button[@id='SubmitLogin']")
-    private WebElement submitButton;
+    // Instances of WebDriver and WebDriverWait
+    private WebDriver driver;
 
     /**
      * Constructor
@@ -30,15 +25,5 @@ public class LoginPage extends AbstractPage {
         super(driver);
     }
 
-    /**
-     * Enter login and password and click to Submit Button
-      * @param login
-     * @param password
-     */
-    public void signIn ( String login, String password){
-        fieldLogin.sendKeys(login);
-        fieldPassword.sendKeys(password);
-        submitButton.click();
-    }
 
 }

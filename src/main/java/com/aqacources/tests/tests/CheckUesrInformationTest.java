@@ -41,9 +41,9 @@ public class CheckUesrInformationTest {
     @Test
     public void testOpenSiteAndClickTheLinkTest() {
 
-        String loginPageURL;
+        String loginPageTitle;
 
-        String myAcoountPageURL;
+        String myAcoountPageTitle;
 
         // Open site
         driver.get(URL);
@@ -55,13 +55,10 @@ public class CheckUesrInformationTest {
         LoginPage loginPage = homePage.clickSignInLink();
 
         // get URL for Login Page
-        loginPageURL =  homePage.getURL(driver);
+        loginPageTitle =  homePage.getTitle(driver);
 
         // Sign In with login and password
-        loginPage.signIn("marina60394@gmail.com", "65582012marina");
-
-        // Initialize MyAccountPage
-        MyAccoutPage myAccoutPage = new MyAccoutPage(driver);
+        MyAccoutPage myAccoutPage = loginPage.signIn("marina60394@gmail.com", "65582012marina");
 
         // check customer name
         myAccoutPage.checkcustomerName();
@@ -70,10 +67,10 @@ public class CheckUesrInformationTest {
         myAccoutPage.logOut();
 
         // get URL after Sign Out
-        myAcoountPageURL = myAccoutPage.getURL(driver);
+        myAcoountPageTitle = myAccoutPage.getTitle(driver);
 
         // check that page after click Sign In and page when user is Log Out is the same
-        Assert.assertEquals(loginPageURL, myAcoountPageURL);
+        Assert.assertEquals(loginPageTitle, myAcoountPageTitle);
 
     }
 

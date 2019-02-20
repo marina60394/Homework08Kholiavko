@@ -14,11 +14,9 @@ public class MyAccoutPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='header_user_info']/a[@class='account']/span")
     private WebElement customerAccount;
 
-    @FindBy(xpath = "//div[@class='header_user_info']/a[@class='logout']")
-    private WebElement logOut;
-
     /**
      * Constructor
+     *
      * @param driver
      */
     public MyAccoutPage(WebDriver driver) {
@@ -28,16 +26,8 @@ public class MyAccoutPage extends AbstractPage {
     /**
      * Check that customer name is correct
      */
-    public void checkcustomerName(){
+    public void checkcustomerName() {
         Assert.assertEquals("Maryna Test", customerAccount.getText());
-    }
-
-
-    /**
-     * Click Log Out
-     */
-    public void logOut(){
-        logOut.click();
     }
 
 }

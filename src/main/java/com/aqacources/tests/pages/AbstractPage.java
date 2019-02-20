@@ -21,6 +21,18 @@ public class AbstractPage {
     @FindBy(xpath = "//div[@id='page']")
     private WebElement divPage;
 
+    @FindBy(xpath = "//div[@class='header_user_info']/a[@class='logout']")
+    private WebElement logOut;
+
+    @FindBy(xpath = "//form[@id='login_form']/descendant::div[@class='form-group']/input[@data-validate='isEmail']")
+    private WebElement fieldLogin;
+
+    @FindBy(xpath = "//form[@id='login_form']/descendant::div[@class='form-group']/span/input[@type='password']")
+    private WebElement fieldPassword;
+
+    @FindBy(xpath = "//button[@id='SubmitLogin']")
+    private WebElement submitButton;
+
     // Instances of WebDriver and WebDriverWait
     private WebDriver driver;
     private WebDriverWait wait;
@@ -51,9 +63,29 @@ public class AbstractPage {
      * @param driver
      * @return
      */
-    public String getURL (WebDriver driver) {
-        currentPageURL = driver.getCurrentUrl();
+    public String getTitle (WebDriver driver) {
+        currentPageURL = driver.getTitle();
         return currentPageURL;
+    }
+
+    /**
+     * Click Log Out
+     */
+    public void logOut() {
+        logOut.click();
+    }
+
+
+    /**
+     * Enter login and password and click to Submit Button
+     * @param login
+     * @param password
+     */
+    public MyAccoutPage signIn (String login, String password){
+        fieldLogin.sendKeys(login);
+        fieldPassword.sendKeys(password);
+        submitButton.click();
+        return new MyAccoutPage(driver);
     }
 
 }
